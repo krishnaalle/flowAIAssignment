@@ -1,0 +1,64 @@
+GET http://localhost:5000/transactions      -------------Retrieves all transactions.
+
+response
+[{
+    "id": 1,
+    "type": "expense",
+    "category": 2,
+    "amount": 200,
+    "date": "2024-10-15",
+    "description": "Updated Dinner"
+}, {
+    "id": 2,
+    "type": "expense",
+    "category": 2,
+    "amount": 200,
+    "date": "2024-10-02",
+    "description": "Groceries"
+}, {
+    "id": 3,
+    "type": "expense",
+    "category": 3,
+    "amount": 1200,
+    "date": "2024-10-03",
+    "description": "Monthly rent"
+}]
+
+POST http://localhost:5000/transactions        -------------Create transaction.
+Content-Type: application/json
+
+{
+    "type": "expense",
+    "category": 3,
+    "amount": 1200,
+    "date": "2024-10-03",
+    "description": "Monthly rent"
+}
+
+GET http://localhost:5000/transactions/3      ----------------Retrieves a transaction by ID.
+
+response
+{
+    "id": 3,
+    "type": "expense",
+    "category": 3,
+    "amount": 1200,
+    "date": "2024-10-03",
+    "description": "Monthly rent"
+}
+
+PUT http://localhost:5000/transactions/2                           ----------------Updates a transaction by ID.
+response "Transaction Updated Successfully"
+
+
+DELETE http://localhost:5000/transactions/4 Deletes a transaction by ID.
+response "Transaction Deleted"
+
+GET http://localhost:5000/summary
+            ---------Retrieves a summary of transactions, such as total income, total expenses, and balance. Optionally, this can be filtered by date range or category.
+
+response {
+    "totalIncome": 1500,
+    "totalExpenses": 1600,
+    "balance": -100
+}
